@@ -65,6 +65,7 @@
             <ul class="flex justify-center space-x-6">
                 <li><a href="#public-view" class="hover:text-red-200 transition-colors duration-200" onclick="showPublicView()">Home</a></li>
                 <li><a href="#projects-view" class="hover:text-red-200 transition-colors duration-200" onclick="showProjectsView()">Projects</a></li>
+                <li><a href="#filmography-view" class="hover:text-red-200 transition-colors duration-200" onclick="showFilmographyView()">Filmography</a></li>
                 <li><a href="#blog-view" class="hover:text-red-200 transition-colors duration-200" onclick="showBlogView()">Blog</a></li>
                 <li><a href="#gallery-view" class="hover:text-red-200 transition-colors duration-200" onclick="showGalleryView()">Gallery</a></li>
             </ul>
@@ -209,6 +210,30 @@
             </div>
             <div class="mt-8 pt-6 border-t border-gray-200 text-center">
                 <button onclick="showProjectsView()" class="bg-red-700 text-white font-bold py-3 px-8 rounded-lg shadow-md hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                    Back to Filmography
+                </button>
+            </div>
+        </div>
+
+        <div id="filmography-view" class="hidden bg-white p-6 md:p-8 rounded-xl shadow-lg">
+            <h2 class="text-3xl font-bold text-red-800 mb-6 text-center">Engwerda Studios Filmography</h2>
+            <div id="filmographyContainer" class="space-y-8">
+                </div>
+            <div class="mt-8 pt-6 border-t border-gray-200 text-center">
+                <button onclick="showPublicView()" class="bg-red-700 text-white font-bold py-3 px-8 rounded-lg shadow-md hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                    Back to Home
+                </button>
+            </div>
+        </div>
+        
+        <div id="credits-view" class="hidden bg-white p-6 md:p-8 rounded-xl shadow-lg">
+            <h2 id="credits-title" class="text-3xl font-bold text-red-800 mb-4 text-center"></h2>
+            <div class="text-gray-700 space-y-4">
+                <h3 class="text-xl font-bold text-red-800">Credits</h3>
+                <div id="credits-content" class="whitespace-pre-line text-lg leading-relaxed"></div>
+            </div>
+            <div class="mt-8 pt-6 border-t border-gray-200 text-center">
+                <button onclick="showFilmographyView()" class="bg-red-700 text-white font-bold py-3 px-8 rounded-lg shadow-md hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
                     Back to Filmography
                 </button>
             </div>
@@ -375,13 +400,33 @@
         };
         
         // Global projects data for the new filmography page
+        // UPDATED: Added a 'credits' field for the Filmography page
         const projects = [
             {
                 title: "Bike Bandits",
                 year: 2025,
                 description: "Our latest short film project, currently in production.",
                 viewId: "bike-bandits-view",
-                thumbnail: "images/video_placehold.png"
+                thumbnail: "images/video_placehold.png",
+                credits: `
+                    Written and Directed by: Austin Engwerda
+                    Produced by: Nathan Bennett-Crump, Austin Engwerda
+                    
+                    Cast:
+                    Marc: Elias Levy
+                    Danny: Elliott Shaykin
+                    Denice: Hadley Perera
+                    Chalene: Claire Horton
+                    Girl: Amelie Lo
+                    
+                    Crew:
+                    Director of Photography: Alex Doe
+                    Assistant Director: Jane Smith
+                    Sound Mixer: Michael Johnson
+                    Editor: Austin Engwerda
+                    Graphic Design: Nathan Bennett-Crump
+                    Web Development: B-C Web
+                `
             },
             {
                 title: "MCR: A Short Film",
@@ -389,7 +434,14 @@
                 description: "A thrilling short film exploring a tense standoff. Made in 2023.",
                 youtubeUrl: "https://youtu.be/kSL0ma11K5A",
                 youtubeId: "kSL0ma11K5A",
-                thumbnail: "https://i.ytimg.com/vi/kSL0ma11K5A/mqdefault.jpg"
+                thumbnail: "https://i.ytimg.com/vi/kSL0ma11K5A/mqdefault.jpg",
+                credits: `
+                    Directed by: Austin Engwerda
+                    
+                    Cast:
+                    Austin Engwerda
+                    Nathan Bennett-Crump
+                `
             },
             {
                 title: "Top Gun (Clean Version)",
@@ -397,7 +449,11 @@
                 description: "A fun parody of the classic film, recut for a family-friendly audience.",
                 youtubeUrl: "https://youtu.be/MURjoBiJ1BI",
                 youtubeId: "MURjoBiJ1BI",
-                thumbnail: "https://i.ytimg.com/vi/MURjoBiJ1BI/mqdefault.jpg"
+                thumbnail: "https://i.ytimg.com/vi/MURjoBiJ1BI/mqdefault.jpg",
+                credits: `
+                    Directed by: Austin Engwerda
+                    Produced by: Engwerda Studios
+                `
             },
             {
                 title: "Foux Da Fa Fa",
@@ -405,7 +461,15 @@
                 description: "A comedic tribute to the TV show 'Flight of the Conchords.'",
                 youtubeUrl: "https://youtu.be/pyz3HLDYdRE",
                 youtubeId: "pyz3HLDYdRE",
-                thumbnail: "https://i.ytimg.com/vi/pyz3HLDYdRE/mqdefault.jpg"
+                thumbnail: "https://i.ytimg.com/vi/pyz3HLDYdRE/mqdefault.jpg",
+                credits: `
+                    Directed by: Austin Engwerda
+                    Written by: Austin Engwerda
+                    
+                    Starring:
+                    Austin Engwerda
+                    Nathan Bennett-Crump
+                `
             },
             {
                 title: "Time Portal 2",
@@ -413,7 +477,11 @@
                 description: "The highly anticipated sequel to the original.",
                 youtubeUrl: "https://www.youtube.com/watch?v=aSm6JbGi3Io&t=8s",
                 youtubeId: "aSm6JbGi3Io",
-                thumbnail: "https://i.ytimg.com/vi/aSm6JbGi3Io/mqdefault.jpg"
+                thumbnail: "https://i.ytimg.com/vi/aSm6JbGi3Io/mqdefault.jpg",
+                credits: `
+                    Directed by: Austin Engwerda
+                    Produced by: Austin Engwerda
+                `
             },
             {
                 title: "Time Portal",
@@ -421,7 +489,11 @@
                 description: "A thrilling sci-fi adventure.",
                 youtubeUrl: "https://www.youtube.com/watch?v=1ATgNuUh-fg&t=10s",
                 youtubeId: "1ATgNuUh-fg",
-                thumbnail: "https://i.ytimg.com/vi/1ATgNuUh-fg/mqdefault.jpg"
+                thumbnail: "https://i.ytimg.com/vi/1ATgNuUh-fg/mqdefault.jpg",
+                credits: `
+                    Directed by: Austin Engwerda
+                    Written by: Austin Engwerda
+                `
             }
         ];
 
@@ -435,7 +507,8 @@
         // --- VIEW MANAGEMENT & AUTHENTICATION ---
         
         function showView(viewId) {
-            const views = ['public-view', 'blog-view', 'login', 'content-view', 'gallery-view', 'projects-view', 'bike-bandits-view', 'project-detail-view'];
+            // UPDATED: Added new view IDs
+            const views = ['public-view', 'blog-view', 'login', 'content-view', 'gallery-view', 'projects-view', 'bike-bandits-view', 'project-detail-view', 'filmography-view', 'credits-view'];
             views.forEach(id => {
                 const viewElement = document.getElementById(id);
                 if (viewElement) {
@@ -466,6 +539,19 @@
         function showProjectsView() {
             showView('projects-view');
             renderProjectsToContainer('projectsContainer');
+        }
+        
+        // NEW: Function to show the filmography page
+        function showFilmographyView() {
+            showView('filmography-view');
+            renderProjectsToContainer('filmographyContainer', null, 'filmography');
+        }
+
+        // NEW: Function to show the credits page for a specific project
+        function showCreditsPage(project) {
+            document.getElementById('credits-title').textContent = project.title;
+            document.getElementById('credits-content').textContent = project.credits;
+            showView('credits-view');
         }
 
         function showProjectDetails(project) {
@@ -581,7 +667,8 @@
             DOMElements.backButton.disabled = currentPath.length === 0;
         }
 
-        function renderProjectsToContainer(containerId, limit = null) {
+        // UPDATED: Added the `pageType` parameter to customize links
+        function renderProjectsToContainer(containerId, limit = null, pageType = 'projects') {
             const container = document.getElementById(containerId);
             container.innerHTML = ''; // Clear existing content
 
@@ -589,25 +676,25 @@
 
             projectsToRender.forEach(project => {
                 const isLatest = containerId === 'latestProjectsContainer';
-                let linkHref = project.youtubeUrl ? project.youtubeUrl : `#${project.viewId}`;
-                let clickHandler = '';
-                let linkTarget = '_self'; // Default to a new page
                 
-                if (project.viewId) {
-                    clickHandler = `showView('${project.viewId}')`;
-                    linkTarget = '_self';
-                } else if (project.youtubeId) {
-                    clickHandler = `showProjectDetails(projects.find(p => p.youtubeId === '${project.youtubeId}'))`;
-                    linkTarget = '_self';
-                    linkHref = '#';
-                } else if (project.youtubeUrl) {
-                    linkTarget = '_blank';
+                // Determine the correct click handler based on the page type
+                let clickHandler = '';
+                if (pageType === 'projects') {
+                    if (project.viewId) {
+                        clickHandler = `showView('${project.viewId}')`;
+                    } else if (project.youtubeId) {
+                        clickHandler = `showProjectDetails(projects.find(p => p.youtubeId === '${project.youtubeId}'))`;
+                    } else if (project.youtubeUrl) {
+                        clickHandler = `window.open('${project.youtubeUrl}', '_blank');`;
+                    }
+                } else if (pageType === 'filmography') {
+                    // For the filmography page, the link will show the credits
+                    clickHandler = `showCreditsPage(projects.find(p => p.title === '${project.title}'))`;
                 }
 
-                
                 // This is the HTML structure for a single project card
                 const projectCardHtml = `
-                    <a href="${linkHref}" onclick="${clickHandler}" target="${linkTarget}" class="block group">
+                    <a href="#" onclick="${clickHandler}" class="block group">
                         <div class="video-card rounded-lg overflow-hidden shadow-lg transform group-hover:scale-105 transition-transform duration-300">
                             <img src="${project.thumbnail}" alt="${project.title} thumbnail" class="w-full h-auto object-cover">
                         </div>
@@ -618,15 +705,15 @@
                 // Use a different structure for the main projects page for more detail
                 const detailedCardHtml = `
                     <div class="flex flex-col md:flex-row bg-gray-100 p-4 rounded-lg shadow-md hover:bg-gray-200 transition-colors duration-200">
-                        <a href="${linkHref}" onclick="${clickHandler}" target="${linkTarget}" class="block md:w-1/3 flex-shrink-0">
+                        <a href="#" onclick="${clickHandler}" class="block md:w-1/3 flex-shrink-0">
                             <img src="${project.thumbnail}" alt="${project.title} thumbnail" class="w-full rounded-lg shadow-sm">
                         </a>
                         <div class="md:ml-6 mt-4 md:mt-0 flex-grow">
                             <h3 class="text-2xl font-bold text-red-800 mb-2">${project.title} <span class="font-normal text-lg text-gray-500">(${project.year})</span></h3>
                             <p class="text-gray-700">${project.description}</p>
                             <div class="mt-4">
-                                <a href="${linkHref}" onclick="${clickHandler}" target="${linkTarget}" class="inline-block bg-red-700 text-white font-bold py-2 px-6 rounded-lg hover:bg-red-800">
-                                    Watch Now
+                                <a href="#" onclick="${clickHandler}" class="inline-block bg-red-700 text-white font-bold py-2 px-6 rounded-lg hover:bg-red-800">
+                                    ${pageType === 'filmography' ? 'View Credits' : 'Watch Now'}
                                 </a>
                             </div>
                         </div>
